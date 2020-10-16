@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.GameMap;
 using Assets.Scripts.Map;
-using GoRogue;
 using GoRogue.MapGeneration;
 using GoRogue.MapViews;
 using UnityEngine;
@@ -11,24 +10,29 @@ namespace Assets.Scripts
     {
         private void Start()
         {
+            GenerateTerrain();
+        }
+
+        private void GenerateTerrain()
+        {
             var terrainMap = new ArrayMap<bool>(200, 100);
             QuickGenerators.GenerateRectangleMap(terrainMap);
 
-            var map = new Map.GameMap(terrainMap.Width, terrainMap.Height);
+            var map = new GameMap.GameMap(terrainMap.Width, terrainMap.Height);
 
             foreach (var position in terrainMap.Positions())
             {
                 if (IsFloor(terrainMap[position]))
                 {
-                    //todo get floor prefab
-                    map.SetTerrain(new Floor(, position));
+                    map.SetTerrain(new Floor(TerrainManager.Instance.TestGrassTile, position));
                 }
                 else
                 {
-                    //todo get wall prefab
-                    map.SetTerrain(new Wall(, position));
+                    map.SetTerrain(new Wall(TerrainManager.Instance.TestWallTile, position));
                 }
             }
+
+            GameManager.Instance.CurrentGameMap = map;
         }
 
         private static bool IsFloor(bool cellType)
