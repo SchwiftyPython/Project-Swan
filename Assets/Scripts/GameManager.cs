@@ -2,6 +2,12 @@
 
 namespace Assets.Scripts
 {
+    public enum TeamColor
+    {
+        Blue,
+        Red
+    }
+
     public class GameManager : MonoBehaviour
     {
         public GameMap.GameMap CurrentGameMap;

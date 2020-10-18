@@ -44,3 +44,6 @@ TagManager:
   - name: Walls
     uniqueID: 355145639
     locked: 0
+  - name: Entities
+    uniqueID: 468038845
+    locked: 0
