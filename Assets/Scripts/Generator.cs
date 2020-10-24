@@ -19,6 +19,7 @@ namespace Assets.Scripts
         {
             GenerateTerrain();
             PlaceFlags();
+            GenerateSimpleTeams();
         }
 
         private void GenerateTerrain()
@@ -81,6 +82,17 @@ namespace Assets.Scripts
         private static bool IsFloor(bool cellType)
         {
             return cellType;
+        }
+
+        private void GenerateSimpleTeams()
+        {
+            var blueTeam = TeamStore.Instance.GetStandardTeam(TeamColor.Blue);
+
+            GameManager.Instance.BlueTeam = blueTeam;
+
+            var redTeam = TeamStore.Instance.GetStandardTeam(TeamColor.Red);
+
+            GameManager.Instance.RedTeam = redTeam;
         }
     }
 }
