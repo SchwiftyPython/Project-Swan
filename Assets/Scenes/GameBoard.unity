@@ -370,6 +370,10 @@ MonoBehaviour:
     type: 3}
   RedFlagPrefab: {fileID: 5313058128882196127, guid: 4368849e81fc88c4c8d98b1d74bf961c,
     type: 3}
+  BlueTeamPawnPrefab: {fileID: 1463555412800869587, guid: 0537a0dc8162aad4fb9e186fa47bf809,
+    type: 3}
+  RedTeamPawnPrefab: {fileID: 7795761146895168031, guid: 7b452212e338a504b8b168e7baa011e4,
+    type: 3}
 --- !u!4 &1085556405
 Transform:
   m_ObjectHideFlags: 0
