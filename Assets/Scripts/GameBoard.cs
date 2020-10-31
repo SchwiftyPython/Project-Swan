@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using Assets.Scripts.Entities;
 using Assets.Scripts.GameMap;
 using Assets.Scripts.Map;
@@ -10,6 +9,8 @@ namespace Assets.Scripts
 {
     public class GameBoard : MonoBehaviour
     {
+        public Transform PawnHolder;
+
         public static GameBoard Instance;
 
         private void Start()
@@ -44,6 +45,22 @@ namespace Assets.Scripts
                     var instance = Instantiate(cellPrefab, new Vector2(currentColumn, currentRow), Quaternion.identity);
 
                     instance.transform.SetParent(transform);
+
+                    var pawn = map.GetEntity<Pawn>(coord);
+
+                    if (pawn != null)
+                    {
+                        if (GameManager.Instance.BlueTeam.Pawns.Contains(pawn))
+                        {
+                            instance = Instantiate(EntityManager.Instance.BlueTeamPawnPrefab, new Vector2(currentColumn, currentRow), Quaternion.identity);
+                        }
+                        else
+                        {
+                            instance = Instantiate(EntityManager.Instance.RedTeamPawnPrefab, new Vector2(currentColumn, currentRow), Quaternion.identity);
+                        }
+
+                        instance.transform.SetParent(PawnHolder);
+                    }
 
                     var flag = map.GetEntity<Flag>(coord);
 

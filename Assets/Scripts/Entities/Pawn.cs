@@ -1,5 +1,4 @@
-﻿using GoRogue;
-using GoRogue.GameFramework;
+﻿using GoRogue.GameFramework;
 
 namespace Assets.Scripts.Entities
 {
@@ -15,6 +14,7 @@ namespace Assets.Scripts.Entities
         public bool IsCaptured { get; private set; }
 
         //todo stance
+        //todo sprite prefab
 
         public Pawn(string name, int agility, int movement, int stealth, int vision) : base((-1,-1), 1, null, false, false, true)
         {

@@ -6,7 +6,19 @@ namespace Assets.Scripts
 {
     public class TeamStore : MonoBehaviour
     {
-        private readonly List<Pawn> _standardTeam = new List<Pawn>
+        private readonly List<Pawn> _standardTeamBlue = new List<Pawn>
+        {
+            new Pawn("Tara", 18, 18, 18, 18),
+            new Pawn("Rosio", 18, 10, 18, 18),
+            new Pawn("Manda", 10, 10, 10, 10),
+            new Pawn("Tommie", 1, 1, 1, 1),
+            new Pawn("Alex", 18, 9, 1, 9),
+            new Pawn("Wesley", 1, 8, 18, 8),
+            new Pawn("David", 18, 18, 17, 17),
+            new Pawn("Angeline", 17, 18, 17, 16)
+        };
+
+        private readonly List<Pawn> _standardTeamRed = new List<Pawn>
         {
             new Pawn("Tara", 18, 18, 18, 18),
             new Pawn("Rosio", 18, 10, 18, 18),
@@ -35,8 +47,14 @@ namespace Assets.Scripts
 
         public Team GetStandardTeam(TeamColor color)
         {
-            return new Team(color, _standardTeam);
+            if (color == TeamColor.Blue)
+            {
+                return new Team(color, _standardTeamBlue);
+            }
+            else
+            {
+                return new Team(color, _standardTeamRed);
+            }
         }
-
     }
 }
