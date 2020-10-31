@@ -12,6 +12,9 @@ namespace Assets.Scripts
     {
         public GameMap.GameMap CurrentGameMap;
 
+        public Team BlueTeam;
+        public Team RedTeam;
+
         public static GameManager Instance;
 
         private void Awake()

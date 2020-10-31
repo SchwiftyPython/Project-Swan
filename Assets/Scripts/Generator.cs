@@ -13,12 +13,20 @@ namespace Assets.Scripts
     public class Generator : MonoBehaviour
     {
         public static readonly (int, int) BlueTeamFlagRangeX = (4, 25);
-        public static readonly (int, int) RedTeamFlagRangeX = (176, 200);
+        public static readonly (int, int) RedTeamFlagRangeX = (176, 196);
 
-        private void Start()
+        public static readonly (int, int) BlueTeamPawnRangeX = (1, 95);
+        public static readonly (int, int) RedTeamPawnRangeX = (105, 199);
+
+        public void Generate()
         {
             GenerateTerrain();
             PlaceFlags();
+            GenerateSimpleTeams();
+            PlacePawns();
+
+            //todo remove after prototype
+            GameBoard.Instance.Build();
         }
 
         private void GenerateTerrain()
@@ -81,6 +89,72 @@ namespace Assets.Scripts
         private static bool IsFloor(bool cellType)
         {
             return cellType;
+        }
+
+        private void GenerateSimpleTeams()
+        {
+            var blueTeam = TeamStore.Instance.GetStandardTeam(TeamColor.Blue);
+
+            GameManager.Instance.BlueTeam = blueTeam;
+
+            var redTeam = TeamStore.Instance.GetStandardTeam(TeamColor.Red);
+
+            GameManager.Instance.RedTeam = redTeam;
+        }
+
+        private void PlacePawns()
+        {
+            const int maxTries = 3;
+
+            var map = GameManager.Instance.CurrentGameMap;
+
+            foreach (var pawn in GameManager.Instance.BlueTeam.Pawns)
+            {
+                var placed = false;
+                var numTries = 0;
+                while (!placed && numTries < maxTries)
+                {
+                    pawn.Position = new Coord(Random.Range(BlueTeamPawnRangeX.Item1, BlueTeamPawnRangeX.Item2),
+                        Random.Range(1, map.Height));
+
+                    placed = map.AddEntity(pawn);
+
+                    numTries++;
+                }
+
+                if (placed)
+                {
+                    Debug.Log($"Blue {pawn.Name} placed at: {pawn.Position}");
+                }
+                else
+                {
+                    Debug.Log($"Blue {pawn.Name} failed to place. Last try at: {pawn.Position}");
+                }
+            }
+
+            foreach (var pawn in GameManager.Instance.RedTeam.Pawns)
+            {
+                var placed = false;
+                var numTries = 0;
+                while (!placed && numTries < maxTries)
+                {
+                    pawn.Position = new Coord(Random.Range(RedTeamPawnRangeX.Item1, RedTeamPawnRangeX.Item2),
+                        Random.Range(1, map.Height));
+
+                    placed = map.AddEntity(pawn);
+
+                    numTries++;
+                }
+
+                if (placed)
+                {
+                    Debug.Log($"Red {pawn.Name} placed at: {pawn.Position}");
+                }
+                else
+                {
+                    Debug.Log($"Red {pawn.Name} failed to place. Last try at: {pawn.Position}");
+                }
+            }
         }
     }
 }

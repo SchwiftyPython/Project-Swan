@@ -7,6 +7,9 @@ namespace Assets.Scripts.Entities
         public GameObject BlueFlagPrefab;
         public GameObject RedFlagPrefab;
 
+        public GameObject BlueTeamPawnPrefab;
+        public GameObject RedTeamPawnPrefab;
+
         public static EntityManager Instance;
 
         private void Start()
