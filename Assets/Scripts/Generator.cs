@@ -27,6 +27,8 @@ namespace Assets.Scripts
 
             //todo remove after prototype
             GameBoard.Instance.Build();
+            GameManager.Instance.ActivePlayer = GameManager.Instance.BluePlayer;
+            GameManager.Instance.CurrentState = GameManager.GameState.PlayerTurn;
         }
 
         private void GenerateTerrain()
@@ -95,11 +97,11 @@ namespace Assets.Scripts
         {
             var blueTeam = TeamStore.Instance.GetStandardTeam(TeamColor.Blue);
 
-            GameManager.Instance.BlueTeam = blueTeam;
+            GameManager.Instance.BluePlayer = new Player("Brian", blueTeam);
 
             var redTeam = TeamStore.Instance.GetStandardTeam(TeamColor.Red);
 
-            GameManager.Instance.RedTeam = redTeam;
+            GameManager.Instance.RedPlayer = new Player("Kyla", redTeam);
         }
 
         private void PlacePawns()
@@ -108,7 +110,7 @@ namespace Assets.Scripts
 
             var map = GameManager.Instance.CurrentGameMap;
 
-            foreach (var pawn in GameManager.Instance.BlueTeam.Pawns)
+            foreach (var pawn in GameManager.Instance.BluePlayer.Team.Pawns)
             {
                 var placed = false;
                 var numTries = 0;
@@ -132,7 +134,7 @@ namespace Assets.Scripts
                 }
             }
 
-            foreach (var pawn in GameManager.Instance.RedTeam.Pawns)
+            foreach (var pawn in GameManager.Instance.RedPlayer.Team.Pawns)
             {
                 var placed = false;
                 var numTries = 0;
