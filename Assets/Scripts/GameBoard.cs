@@ -50,7 +50,7 @@ namespace Assets.Scripts
 
                     if (pawn != null)
                     {
-                        if (GameManager.Instance.BlueTeam.Pawns.Contains(pawn))
+                        if (GameManager.Instance.BluePlayer.Team.Pawns.Contains(pawn))
                         {
                             instance = Instantiate(EntityManager.Instance.BlueTeamPawnPrefab, new Vector2(currentColumn, currentRow), Quaternion.identity);
                         }
