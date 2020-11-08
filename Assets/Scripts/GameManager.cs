@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -31,6 +32,8 @@ namespace Assets.Scripts
         public Player RedPlayer;
 
         public Player ActivePlayer;
+
+        public MainCamera MainCamera;
 
         public static GameManager Instance;
 
@@ -71,13 +74,17 @@ namespace Assets.Scripts
         public void EndTurn()
         {
             CurrentState = GameState.EndTurn;
+
+            Debug.Log($@"{ActivePlayer.Team.Color} Team ends turn!");
         }
 
         private void NextPlayerTurn()
         {
             ActivePlayer = ActivePlayer == BluePlayer ? RedPlayer : BluePlayer;
 
-            Debug.Log($@"{ActivePlayer.Team.Color} Team's Turn!");
+            MainCamera.Instance.MovePlayerToPawn(ActivePlayer.Team.Pawns.First());
+
+            Debug.Log($@"{ActivePlayer.Team.Color} Team's turn!");
         }
     }
 }

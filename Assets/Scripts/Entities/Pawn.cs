@@ -16,6 +16,8 @@ namespace Assets.Scripts.Entities
         //todo stance
         //todo sprite prefab
 
+        public UnityEngine.GameObject SpriteInstance { get; private set; }
+
         public Pawn(string name, int agility, int movement, int stealth, int vision) : base((-1,-1), 1, null, false, false, true)
         {
             Name = name;
@@ -24,6 +26,11 @@ namespace Assets.Scripts.Entities
             Stealth = stealth;
             Vision = vision;
             IsCaptured = false;
+        }
+
+        public void SetSpriteInstance(UnityEngine.GameObject instance)
+        {
+            SpriteInstance = instance;
         }
 
         //todo methods: Movement, CapturePlayer, CaptureFlag, ChangeStance
