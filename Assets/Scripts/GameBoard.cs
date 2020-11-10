@@ -60,6 +60,8 @@ namespace Assets.Scripts
                         }
 
                         instance.transform.SetParent(PawnHolder);
+
+                        pawn.SetSpriteInstance(instance);
                     }
 
                     var flag = map.GetEntity<Flag>(coord);

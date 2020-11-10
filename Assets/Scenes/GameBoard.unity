@@ -526,6 +526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afedf3f63f6f78f4781d72027baecb55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainCamera: {fileID: 1676655894}
 --- !u!4 &973242610
 Transform:
   m_ObjectHideFlags: 0
@@ -852,6 +853,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1347461851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1347461853}
+  - component: {fileID: 1347461852}
+  m_Layer: 0
+  m_Name: InputController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1347461852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347461851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81015d2e43de13541b3a7a6c3bd93c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PrototypePawnSelectorPrefab: {fileID: 7426354267800195120, guid: 3d413447cdc6dda4ab4d7c94c8c7a763,
+    type: 3}
+--- !u!4 &1347461853
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347461851}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 148.32005, y: 30.963911, z: -1461.6543}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1633716700
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,6 +957,7 @@ GameObject:
   - component: {fileID: 1676655891}
   - component: {fileID: 1676655890}
   - component: {fileID: 1676655893}
+  - component: {fileID: 1676655894}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -953,7 +1000,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 16.875
+  orthographic size: 8.4375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1001,11 +1048,23 @@ MonoBehaviour:
   maxCameraHeight: 400
   targetDimension: 1
   targetCameraWidth: 400
-  targetCameraHeight: 1200
+  targetCameraHeight: 512
   pixelPerfect: 1
   pixelSnapMode: 0
   assetsPixelsPerUnit: 32
   showHUD: 0
+--- !u!114 &1676655894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676655889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6caa8bd3f820cee4eb05e78bc4a57815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1876540045
 GameObject:
   m_ObjectHideFlags: 0
