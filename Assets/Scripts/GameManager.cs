@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Assets.Scripts.Entities;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -20,6 +21,9 @@ namespace Assets.Scripts
             EndTurn,
             EndGame
         }
+
+        private Pawn _activePawn;
+        private int _activePawnIndex;
 
         public GameState CurrentState { get; set; }
 
@@ -78,11 +82,43 @@ namespace Assets.Scripts
             Debug.Log($@"{ActivePlayer.Team.Color} Team ends turn!");
         }
 
+        public void SelectNextPawn()
+        {
+            var currentPawns = ActivePlayer.Team.Pawns;
+
+            if (_activePawnIndex + 1 >= currentPawns.Count || _activePawnIndex < 0)
+            {
+                _activePawn = ActivePlayer.Team.Pawns.First();
+
+                _activePawnIndex = 0;
+            }
+            else
+            {
+                _activePawnIndex++;
+
+                _activePawn = currentPawns[_activePawnIndex];
+            }
+
+            var selector = InputController.Instance.GetPawnSelectorInstance();
+
+            selector.transform.position = _activePawn.SpriteInstance.transform.position;
+
+            MainCamera.Instance.MovePlayerToPawn(_activePawn);
+        }
+
         private void NextPlayerTurn()
         {
             ActivePlayer = ActivePlayer == BluePlayer ? RedPlayer : BluePlayer;
 
-            MainCamera.Instance.MovePlayerToPawn(ActivePlayer.Team.Pawns.First());
+            _activePawn = ActivePlayer.Team.Pawns.First();
+
+            _activePawnIndex = 0;
+
+            var selector = InputController.Instance.GetPawnSelectorInstance();
+
+            selector.transform.position = _activePawn.SpriteInstance.transform.position;
+
+            MainCamera.Instance.MovePlayerToPawn(_activePawn);
 
             Debug.Log($@"{ActivePlayer.Team.Color} Team's turn!");
         }
