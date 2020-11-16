@@ -99,11 +99,23 @@ namespace Assets.Scripts
                 _activePawn = currentPawns[_activePawnIndex];
             }
 
-            var selector = InputController.Instance.GetPawnSelectorInstance();
+            MoveCameraToActivePawn();
+        }
 
-            selector.transform.position = _activePawn.SpriteInstance.transform.position;
+        public void SelectPawn(Pawn selectedPawn)
+        {
+            var currentPawns = ActivePlayer.Team.Pawns;
 
-            MainCamera.Instance.MovePlayerToPawn(_activePawn);
+            var pawnIndex = currentPawns.IndexOf(selectedPawn);
+
+            if (pawnIndex < 0)
+            {
+                return;
+            }
+
+            _activePawn = selectedPawn;
+            _activePawnIndex = pawnIndex;
+            MoveCameraToActivePawn();
         }
 
         private void NextPlayerTurn()
@@ -114,13 +126,18 @@ namespace Assets.Scripts
 
             _activePawnIndex = 0;
 
+            MoveCameraToActivePawn();
+
+            Debug.Log($@"{ActivePlayer.Team.Color} Team's turn!");
+        }
+
+        private void MoveCameraToActivePawn()
+        {
             var selector = InputController.Instance.GetPawnSelectorInstance();
 
             selector.transform.position = _activePawn.SpriteInstance.transform.position;
 
             MainCamera.Instance.MovePlayerToPawn(_activePawn);
-
-            Debug.Log($@"{ActivePlayer.Team.Color} Team's turn!");
         }
     }
 }

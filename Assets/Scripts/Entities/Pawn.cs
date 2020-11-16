@@ -7,11 +7,13 @@ namespace Assets.Scripts.Entities
         public string Name { get; private set; }
 
         public int Agility { get; private set; }
-        public int Movement { get; private set; }
+        public int MovementPerTurn { get; private set; }
         public int Stealth { get; private set; }
         public int Vision { get; private set; }
 
         public bool IsCaptured { get; private set; }
+
+        public int MovementRemaining { get; private set; }
 
         //todo stance
         //todo sprite prefab
@@ -22,7 +24,8 @@ namespace Assets.Scripts.Entities
         {
             Name = name;
             Agility = agility;
-            Movement = movement;
+            MovementPerTurn = movement;
+            MovementRemaining = MovementPerTurn;
             Stealth = stealth;
             Vision = vision;
             IsCaptured = false;

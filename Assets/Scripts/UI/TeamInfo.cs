@@ -46,9 +46,11 @@ namespace Assets.Scripts.UI
 
                 //todo set sprite image on button
 
+                //todo set sprite info on button
+
                 var movementPointLabel = pawnInfo.GetComponentInChildren<TextMeshProUGUI>();
 
-                movementPointLabel.text = pawn.Movement.ToString();
+                movementPointLabel.text = pawn.MovementPerTurn.ToString();
             }
         }
     
