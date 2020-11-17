@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.UI
 {
@@ -46,7 +47,12 @@ namespace Assets.Scripts.UI
 
                 //todo set sprite image on button
 
-                //todo set sprite info on button
+                var button = pawnInfo.GetComponentInChildren<PawnInfoButton>();
+
+                if (button != null)
+                {
+                    button.SetPawn(pawn);
+                }
 
                 var movementPointLabel = pawnInfo.GetComponentInChildren<TextMeshProUGUI>();
 

@@ -24,7 +24,7 @@ namespace Assets.Scripts.UI
 
         private void DisplayPawnInfo()
         {
-
+            //todo
         }
     }
 }
